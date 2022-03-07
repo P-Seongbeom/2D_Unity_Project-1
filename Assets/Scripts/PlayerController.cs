@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip JumpingSound;
     public AudioClip LandingSound;
     public AudioClip DyingSound;
-    public float JumpForce = 200;
+    public float JumpForce = 300;
 
     private int _jumpCount = 0;
     private bool _onGround = false;
