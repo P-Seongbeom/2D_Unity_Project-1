@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public float JumpForce = 300;
 
     private int _jumpCount = 0;
-    private bool _onGround = false;
     private bool _isDead = false;
 
     private Rigidbody2D _playerRigidbody;
@@ -40,17 +39,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _jumpCount < 2)
         {
             ++_jumpCount;
+
             _playerRigidbody.velocity = Vector2.zero;
             _playerRigidbody.AddForce(new Vector2(0, JumpForce));
+
             _playerAudio.clip = JumpingSound;
             _playerAudio.Play();
+
+            _animator.SetBool("isJump", true);
         }
         else if(Input.GetMouseButtonUp(0) && _playerRigidbody.velocity.y > 0)
         {
             _playerRigidbody.velocity *= 0.5f;
         }
-
-        _animator.SetBool("onGround", _onGround);
     }
 
     private void Die()
@@ -62,6 +63,8 @@ public class PlayerController : MonoBehaviour
 
         _playerRigidbody.velocity = Vector2.zero;
         _isDead = true;
+
+        GameManager.Instance.PlayerDead();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,9 +77,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.contacts[0].normal.y > 0.7f)
+        if(collision.contacts[0].normal.y > 0.7f && _animator.GetBool("isJump") == true)
         {
-            _onGround = true;
+            _animator.SetBool("isJump", false);
             _jumpCount = 0;
 
             _playerAudio.clip = LandingSound;
@@ -84,8 +87,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        _onGround = false;
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    _animator.SetBool("isJump", true);
+    //}
 }
