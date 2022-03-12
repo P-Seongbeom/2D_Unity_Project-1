@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverUI;
 
     private float _score = 0;
-    public float AddValue = 100;
+    private float _itemScore;
+    public float AddTimeValue = 10;
     public float ValueRate;
 
     void Awake()
@@ -32,7 +33,9 @@ public class GameManager : MonoBehaviour
     {
         if (false == GameOver)
         {
-            AddScore();
+            AddTimeScore();
+
+            ScoreText.text = "Score : " + (int)_score;
         }
         else if(GameOver && Input.GetMouseButtonDown(0))
         {
@@ -40,17 +43,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddScore()
+    public void AddTimeScore()
     {
-        if(!GameOver)
+        if(false == GameOver)
         {
-            AddValue += AddValue * ValueRate * Time.deltaTime;
+            AddTimeValue += AddTimeValue * ValueRate * Time.deltaTime;
 
-            _score += AddValue * Time.deltaTime;
+            _score += AddTimeValue * Time.deltaTime;
+        }
+    }
 
-            ScoreText.text = "Score : " + (int)_score;
-
-            //Debug.Log($"{AddValue}");
+    public void AddItemScore(float addValue)
+    {
+        if(false == GameOver)
+        {
+            _itemScore = addValue;
+            _score += _itemScore;
         }
     }
 
