@@ -15,15 +15,14 @@ public class ItemPool : MonoBehaviour
     [SerializeField]
     private List<GameObject> _itemPrefab;
     [SerializeField]
-    private List<GameObject[]> _itemPool;
+    private List<GameObject[]> _itemPool = new List<GameObject[]>();
 
     void Awake()
-    {
-
+    { 
         for (int i = 0; i < _itemDatas.Count; ++i)
         {
-            _itemPool[i] = new GameObject[_itemDatas[i].MaxCount];
-
+            GameObject[] objects = new GameObject[_itemDatas[i].MaxCount];
+            _itemPool.Add(objects);
 
             GenerateItem((ItemType)i);
         }
