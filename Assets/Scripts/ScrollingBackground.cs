@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScrollingBackground : MonoBehaviour
 {
+    public Transform Player;
+
     public Transform[] ScrollObject;
 
     public GameObject SpawnObject;
@@ -14,17 +16,15 @@ public class ScrollingBackground : MonoBehaviour
     public float ScrollObjectFrequency;
     public float SpawnObjectFrequency;
 
-    //private Transform[] _selectedObject;
+    private float _resetPosition = -12f;
 
-    void Start()
+    void Awake()
     {
         ScrollObject = GetComponentsInChildren<Transform>();
 
         if(SpawnObject)
         {
             SpawnObjects = SpawnObject.GetComponentsInChildren<Transform>();
-
-            //_selectedObject = new Transform[ScrollObject.Length - 1];
 
             foreach (Transform child in SpawnObjects)
             {
@@ -44,7 +44,7 @@ public class ScrollingBackground : MonoBehaviour
             return;
         }
 
-        AddScrollSpeed(AddSpeedRate);
+        AddScrollSpeed();
 
         foreach (Transform child in ScrollObject)
         {
@@ -52,18 +52,17 @@ public class ScrollingBackground : MonoBehaviour
             {
                 child.transform.Translate(Vector3.left * ScrollSpeed * Time.deltaTime);
 
-                if(child.position.x < (-9f))
+                if(child.position.x < (_resetPosition))
                 {
                     child.gameObject.SetActive(true);
 
-                    Vector2 reposition = new Vector2(child.position.x + 18f, child.position.y);
+                    Vector2 reposition = new Vector2(child.position.x + Mathf.Abs(_resetPosition * 2), child.position.y);
                     child.transform.position = reposition;
 
                     if (SpawnObjects.Length > 0)
                     {
                         int index = Random.Range(1, SpawnObjects.Length);
                         RandomGeneration(child, ScrollObjectFrequency, SpawnObjects[index], SpawnObjectFrequency);
-                        //SpawnObjects[index].position = child.position;
                     }
                     else
                     {
@@ -78,7 +77,7 @@ public class ScrollingBackground : MonoBehaviour
 
     private void RandomGeneration(Transform scrollObject, float scrollFrequency,Transform spawnObject, float spawnFrequency)
     {
-        float scrollNum = Random.Range(0, 10);
+        float scrollNum = Random.Range(0, 100);
 
         if(scrollNum > scrollFrequency)
         {
@@ -86,9 +85,9 @@ public class ScrollingBackground : MonoBehaviour
         }
         else
         {
-            float spawnNum = Random.Range(0, 10);
+            float spawnNum = Random.Range(0, 100);
 
-            if(spawnNum <= spawnFrequency && false == spawnObject.gameObject.activeSelf)
+            if(spawnNum < spawnFrequency && false == spawnObject.gameObject.activeSelf)
             {
                 spawnObject.gameObject.SetActive(true);
                 spawnObject.position = scrollObject.position;
@@ -99,7 +98,7 @@ public class ScrollingBackground : MonoBehaviour
 
     private void RandomGeneration(Transform scrollObject, float scrollFrequency)
     {
-        float scrollNum = Random.Range(0, 10);
+        float scrollNum = Random.Range(0, 100);
 
         if (scrollNum > scrollFrequency)
         {
@@ -115,7 +114,7 @@ public class ScrollingBackground : MonoBehaviour
             {
                 child.transform.Translate(Vector3.left * ScrollSpeed * Time.deltaTime);
 
-                if(child.position.x < (-9f))
+                if(child.position.x < (_resetPosition))
                 {
                     child.gameObject.SetActive(false);
                 }
@@ -124,8 +123,8 @@ public class ScrollingBackground : MonoBehaviour
         }
     }
 
-    private void AddScrollSpeed(float rate)
+    private void AddScrollSpeed()
     {
-        ScrollSpeed += ScrollSpeed * rate * Time.deltaTime;
+        ScrollSpeed += ScrollSpeed * AddSpeedRate * Time.deltaTime;
     }
 }

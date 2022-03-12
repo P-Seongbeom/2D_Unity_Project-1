@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _playerRigidbody;
     private Animator _animator;
     private AudioSource _playerAudio;
-    
-    void Start()
+
+    public Item Items;
+
+    void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -69,7 +71,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Dead" && false == _isDead)
+        if (collision.tag == "Item")
+        {
+            
+        }
+
+        if (collision.tag == "Dead" && false == _isDead)
         {
             Die();
         }
@@ -79,16 +86,20 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.contacts[0].normal.y > 0.7f && _animator.GetBool("isJump") == true)
         {
-            _animator.SetBool("isJump", false);
-            _jumpCount = 0;
+            if(collision.collider.tag == "Ground")
+            {
+                _animator.SetBool("isJump", false);
+                _jumpCount = 0;
 
-            _playerAudio.clip = LandingSound;
-            _playerAudio.Play();
+                _playerAudio.clip = LandingSound;
+                _playerAudio.Play();
+            }
+
+        }
+
+        if(collision.collider.tag == "Obstacle" && false == _isDead)
+        {
+            Die();
         }
     }
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    _animator.SetBool("isJump", true);
-    //}
 }
