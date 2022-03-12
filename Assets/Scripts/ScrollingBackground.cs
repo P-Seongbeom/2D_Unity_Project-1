@@ -11,6 +11,11 @@ public class ScrollingBackground : MonoBehaviour
     public GameObject SpawnObject;
     public Transform[] SpawnObjects;
 
+    public ItemPattern ItemPattern;
+    public Transform[] ItemPatterns;
+    [SerializeField]
+    private int _itemBundle;
+
     public float ScrollSpeed;
     public float AddSpeedRate = 0f;
     public float ScrollObjectFrequency;
@@ -34,6 +39,15 @@ public class ScrollingBackground : MonoBehaviour
                 }
             }
         }
+
+        if (ItemPattern)
+        {
+            _itemBundle = ScrollObject.Length - 1;
+
+            ItemPatterns = ItemPattern.GetComponentsInChildren<Transform>();
+
+
+        }
     }
 
 
@@ -52,7 +66,7 @@ public class ScrollingBackground : MonoBehaviour
             {
                 child.transform.Translate(Vector3.left * ScrollSpeed * Time.deltaTime);
 
-                if(child.position.x < (_resetPosition))
+                if(child.position.x < _resetPosition)
                 {
                     child.gameObject.SetActive(true);
 
@@ -127,4 +141,6 @@ public class ScrollingBackground : MonoBehaviour
     {
         ScrollSpeed += ScrollSpeed * AddSpeedRate * Time.deltaTime;
     }
+
+
 }

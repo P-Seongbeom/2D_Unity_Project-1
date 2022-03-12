@@ -14,11 +14,20 @@ public class ItemPool : MonoBehaviour
     private List<ItemData> _itemDatas;
     [SerializeField]
     private List<GameObject> _itemPrefab;
-    [SerializeField]
+
     private List<GameObject[]> _itemPool = new List<GameObject[]>();
 
     void Awake()
     { 
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         for (int i = 0; i < _itemDatas.Count; ++i)
         {
             GameObject[] objects = new GameObject[_itemDatas[i].MaxCount];
@@ -35,6 +44,7 @@ public class ItemPool : MonoBehaviour
             _itemPool[(int)type][i] = Instantiate(_itemPrefab[(int)type]);
             _itemPool[(int)type][i].GetComponent<Item>();
             _itemPool[(int)type][i].SetActive(false);
+            _itemPool[(int)type][i].transform.SetParent(transform);
         }
     }
 
@@ -48,7 +58,6 @@ public class ItemPool : MonoBehaviour
                 return child;
             }
         }
-
         return null;
     }
 
