@@ -2,34 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum PatternType
 {
     A, B, C, D, E
 }
 public class ItemPattern : MonoBehaviour
 {
-    //public static ItemPattern Instance;
+    public List<GameObject> Patterns;
 
-    [SerializeField]
-    private List<Transform> _patterns;
-
-    void Awake()
-    {
-        //if(Instance == null)
-        //{
-        //    Instance = this;
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
     public void ApplyPattern(Transform[] transform, PatternType type)
     {
-        for (int i = 0; i < 3; ++i)
+        foreach(GameObject pattern in Patterns)
         {
-            transform[i].position = _patterns[(int)type].GetChild(i).position;
+            pattern.SetActive(false);
+        }
+
+        Patterns[(int)type].SetActive(true);
+
+        for (int i = 0; i < Patterns[(int)type].transform.childCount; ++i)
+        {
+            transform[i].position = Patterns[(int)type].transform.GetChild(i).position;
             //Debug.Log($"패턴{type} X : " + _patterns[(int)type].GetChild(i).position.x);
             //Debug.Log($"패턴{type} Y : " + _patterns[(int)type].GetChild(i).position.y);
         }

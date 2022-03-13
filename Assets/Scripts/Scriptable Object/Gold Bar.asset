@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gold Bar
   m_EditorClassIdentifier: 
   _itemName: Gold Bar
+  _itemNumber: 2
   _score: 100
-  _spawnFrequency: 5
+  _spawnFrequency: 0.7
   _maxCount: 5

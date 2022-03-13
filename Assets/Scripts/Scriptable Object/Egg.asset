@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Egg
   m_EditorClassIdentifier: 
   _itemName: Egg
+  _itemNumber: 1
   _score: 1
   _spawnFrequency: 100
-  _maxCount: 27
+  _maxCount: 54

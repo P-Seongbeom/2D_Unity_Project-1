@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Triple Egg
   m_EditorClassIdentifier: 
   _itemName: Triple Egg
+  _itemNumber: 5
   _score: 5
-  _spawnFrequency: 80
-  _maxCount: 20
+  _spawnFrequency: 30
+  _maxCount: 54
