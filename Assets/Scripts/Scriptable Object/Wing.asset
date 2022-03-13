@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Wing
   m_EditorClassIdentifier: 
   _itemName: Wing
+  _itemNumber: 6
   _score: 100
-  _spawnFrequency: 10
+  _spawnFrequency: 4
   _maxCount: 5

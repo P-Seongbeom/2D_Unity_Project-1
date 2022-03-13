@@ -10,8 +10,12 @@ public class ItemPool : MonoBehaviour
 {
     public static ItemPool Instance;
 
-    [SerializeField]
-    private List<ItemData> _itemDatas;
+    public int TypeCount = System.Enum.GetValues(typeof(ItemType)).Length;
+
+    public List<ItemData> ItemDatas;
+
+    public Item item;
+
     [SerializeField]
     private List<GameObject> _itemPrefab;
 
@@ -28,9 +32,9 @@ public class ItemPool : MonoBehaviour
             Destroy(gameObject);
         }
 
-        for (int i = 0; i < _itemDatas.Count; ++i)
+        for (int i = 0; i < ItemDatas.Count; ++i)
         {
-            GameObject[] objects = new GameObject[_itemDatas[i].MaxCount];
+            GameObject[] objects = new GameObject[ItemDatas[i].MaxCount];
             _itemPool.Add(objects);
 
             GenerateItem((ItemType)i);
@@ -39,7 +43,7 @@ public class ItemPool : MonoBehaviour
 
     public void GenerateItem(ItemType type)
     {
-        for(int i = 0; i < _itemDatas[(int)type].MaxCount; ++i)
+        for(int i = 0; i < ItemDatas[(int)type].MaxCount; ++i)
         {
             _itemPool[(int)type][i] = Instantiate(_itemPrefab[(int)type]);
             _itemPool[(int)type][i].GetComponent<Item>();
@@ -61,7 +65,7 @@ public class ItemPool : MonoBehaviour
         return null;
     }
 
-    public static void OffItem(GameObject gameObject)
+    public void OffItem(GameObject gameObject)
     {
         gameObject.SetActive(false);
         gameObject.transform.SetParent(Instance.transform);

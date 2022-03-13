@@ -11,10 +11,10 @@ public class Item : MonoBehaviour
     public void GetInfo()
     {
         Debug.Log("이름 : " + _itemData.ItemName);
+        Debug.Log("번호 : " + _itemData.ItemNumber);
         Debug.Log("점수 : " + _itemData.Score);
         Debug.Log("확률 : " + _itemData.SpawnFrequency);
         Debug.Log("최대 수 : " + _itemData.MaxCount);
-
     }
 }
 

@@ -10,6 +10,10 @@ public class ItemData : ScriptableObject
     public string ItemName { get { return _itemName; } }
 
     [SerializeField]
+    private int _itemNumber;
+    public int ItemNumber { get { return _itemNumber; } }
+
+    [SerializeField]
     private float _score;
     public float Score { get { return _score; } }
 

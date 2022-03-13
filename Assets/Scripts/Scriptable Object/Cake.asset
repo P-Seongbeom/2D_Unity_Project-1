@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cake
   m_EditorClassIdentifier: 
   _itemName: Cake
+  _itemNumber: 0
   _score: 1000
-  _spawnFrequency: 3
+  _spawnFrequency: 0.5
   _maxCount: 5
