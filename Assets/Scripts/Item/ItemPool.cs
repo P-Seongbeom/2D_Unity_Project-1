@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,6 @@ public class ItemPool : MonoBehaviour
     public int TypeCount = System.Enum.GetValues(typeof(ItemType)).Length;
 
     public List<ItemData> ItemDatas;
-
-    public Item item;
 
     [SerializeField]
     private List<GameObject> _itemPrefab;
@@ -41,14 +40,15 @@ public class ItemPool : MonoBehaviour
         }
     }
 
+    
     public void GenerateItem(ItemType type)
     {
         for(int i = 0; i < ItemDatas[(int)type].MaxCount; ++i)
         {
             _itemPool[(int)type][i] = Instantiate(_itemPrefab[(int)type]);
-            _itemPool[(int)type][i].GetComponent<Item>();
             _itemPool[(int)type][i].SetActive(false);
-            _itemPool[(int)type][i].transform.SetParent(transform);
+            _itemPool[(int)type][i].transform.SetParent(transform.GetChild((int)type));
+
         }
     }
 
@@ -68,7 +68,12 @@ public class ItemPool : MonoBehaviour
     public void OffItem(GameObject gameObject)
     {
         gameObject.SetActive(false);
-        gameObject.transform.SetParent(Instance.transform);
     }
-
+    
+    public float GetScore(ItemType type)
+    {
+        Debug.Log((int)type);
+        Debug.Log(ItemDatas[(int)type].Score);
+        return 0;
+    }
 }
