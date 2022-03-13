@@ -16,8 +16,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private AudioSource _playerAudio;
 
-    public Item Items;
-
+    public ItemData ItemData;
     void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -73,7 +72,17 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Item")
         {
-            
+            Debug.Log("æ∆¿Ã≈€");
+            //Debug.Log(collision.gameObject.transform.parent);
+
+            string typeName = collision.gameObject.transform.parent.name;
+            //ItemPool.Instance.GetScore((ItemType)typeName);
+            ItemType type = (ItemType)System.Enum.Parse(typeof(ItemType), typeName);
+            Debug.Log(type);
+            ItemPool.Instance.GetScore(type);
+            //collision.gameObject.transform.parent.name
+            //collision.gameObject.transform.GetChild(0).name
+            //GameManager.Instance.AddItemScore(ItemData.Score);
         }
 
         if (collision.tag == "Dead" && false == _isDead)

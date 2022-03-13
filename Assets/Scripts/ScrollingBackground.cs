@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ScrollingBackground : MonoBehaviour
 {
@@ -62,7 +63,9 @@ public class ScrollingBackground : MonoBehaviour
 
             _itemInfo = new List<ItemData>();
 
-            _itemInfo = ItemPool.Instance.ItemDatas;
+            _itemInfo = ItemPool.Instance.ItemDatas.ToList<ItemData>();
+
+            //_itemInfo = ItemPool.Instance.ItemDatas;
 
             _itemInfo.Sort(delegate (ItemData a, ItemData b){ return a.SpawnFrequency.CompareTo(b.SpawnFrequency); });
 
@@ -233,12 +236,6 @@ public class ScrollingBackground : MonoBehaviour
     private ItemType SetItemType()
     {
         float random = Random.Range(0f, 100f);
-
-        if(random < 30)
-        {
-
-        Debug.Log($"È÷Æ® : {random}");
-        }
 
         for(int i = 0; i < _itemInfo.Count; ++i)
         {
