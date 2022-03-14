@@ -65,8 +65,6 @@ public class ScrollingBackground : MonoBehaviour
 
             _itemInfo = ItemPool.Instance.ItemDatas.ToList<ItemData>();
 
-            //_itemInfo = ItemPool.Instance.ItemDatas;
-
             _itemInfo.Sort(delegate (ItemData a, ItemData b){ return a.SpawnFrequency.CompareTo(b.SpawnFrequency); });
 
             _hitNumber = new List<int>();
