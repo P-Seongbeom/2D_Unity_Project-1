@@ -11,12 +11,16 @@ public class PlayerController : MonoBehaviour
 
     private int _jumpCount = 0;
     private bool _isDead = false;
+    [SerializeField]
+    private float _scaleSpeed = 1f;
+    [SerializeField]
+    private Vector3 _maxScale = new Vector3(3f, 3f, 0);
+    [SerializeField]
+    private Vector3 _minScale = new Vector3(1f, 1f, 0);
 
     private Rigidbody2D _playerRigidbody;
     private Animator _animator;
     private AudioSource _playerAudio;
-
-    public ItemData ItemData;
     void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -31,7 +35,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Jump();
+        if(false == ItemEffect.Instance.FlyState)
+        {
+            Jump();
+        }
+        else if(ItemEffect.Instance.FlyState)
+        {
+            Flying();
+        }
 
     }
 
@@ -72,17 +83,24 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Item")
         {
-            Debug.Log("æ∆¿Ã≈€");
-            //Debug.Log(collision.gameObject.transform.parent);
-
             string typeName = collision.gameObject.transform.parent.name;
-            //ItemPool.Instance.GetScore((ItemType)typeName);
             ItemType type = (ItemType)System.Enum.Parse(typeof(ItemType), typeName);
-            Debug.Log(type);
-            ItemPool.Instance.GetScore(type);
-            //collision.gameObject.transform.parent.name
-            //collision.gameObject.transform.GetChild(0).name
-            //GameManager.Instance.AddItemScore(ItemData.Score);
+
+            ItemPool.Instance.ActivateItem(type);
+
+            ItemPool.Instance.OffItem(collision.gameObject);
+        }
+
+        if (collision.tag == "Obstacle" && false == _isDead)
+        {
+            if (false == ItemEffect.Instance.GiantState)
+            {
+                Die();
+            }
+            else if (ItemEffect.Instance.GiantState)
+            {
+                collision.gameObject.SetActive(false);
+            }
         }
 
         if (collision.tag == "Dead" && false == _isDead)
@@ -103,12 +121,44 @@ public class PlayerController : MonoBehaviour
                 _playerAudio.clip = LandingSound;
                 _playerAudio.Play();
             }
-
         }
+    }
 
-        if(collision.collider.tag == "Obstacle" && false == _isDead)
+    public IEnumerator IncreasePlayerSize()
+    {
+        while(transform.localScale.x < _maxScale.x && transform.localScale.y < _maxScale.y)
         {
-            Die();
+            transform.localScale = new Vector3(transform.localScale.x + _scaleSpeed * Time.deltaTime, transform.localScale.y + _scaleSpeed * Time.deltaTime, 0);
+
+            yield return null;
         }
+
+        transform.localScale = _maxScale;
+    }
+
+    public IEnumerator DecreasePlayerSize()
+    {
+        while (transform.localScale.x > _minScale.x && transform.localScale.y > _minScale.y)
+        {
+            transform.localScale = new Vector3(transform.localScale.x - _scaleSpeed * Time.deltaTime, transform.localScale.y - _scaleSpeed * Time.deltaTime, 0);
+
+            yield return null;
+        }
+
+        transform.localScale = _minScale;
+    }
+
+    private void Flying()
+    {
+        _jumpCount = 0;
+
+        if (Input.GetMouseButton(0))
+        {
+            _playerRigidbody.velocity = Vector2.zero;
+            Vector3 reposition = new Vector3(0f, 3f * Time.deltaTime, 0f);
+            transform.position += reposition;
+        }
+        
+
     }
 }

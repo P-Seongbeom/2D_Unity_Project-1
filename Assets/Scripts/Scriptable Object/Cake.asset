@@ -15,5 +15,5 @@ MonoBehaviour:
   _itemName: Cake
   _itemNumber: 0
   _score: 1000
-  _spawnFrequency: 0.5
+  _spawnFrequency: 0.3
   _maxCount: 5

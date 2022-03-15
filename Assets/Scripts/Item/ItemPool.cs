@@ -11,8 +11,6 @@ public class ItemPool : MonoBehaviour
 {
     public static ItemPool Instance;
 
-    public int TypeCount = System.Enum.GetValues(typeof(ItemType)).Length;
-
     public List<ItemData> ItemDatas;
 
     [SerializeField]
@@ -46,9 +44,9 @@ public class ItemPool : MonoBehaviour
         for(int i = 0; i < ItemDatas[(int)type].MaxCount; ++i)
         {
             _itemPool[(int)type][i] = Instantiate(_itemPrefab[(int)type]);
+            _itemPool[(int)type][i].GetComponent<Item>();
             _itemPool[(int)type][i].SetActive(false);
             _itemPool[(int)type][i].transform.SetParent(transform.GetChild((int)type));
-
         }
     }
 
@@ -70,10 +68,40 @@ public class ItemPool : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    public float GetScore(ItemType type)
+    public void ActivateItem(ItemType type)
     {
-        Debug.Log((int)type);
-        Debug.Log(ItemDatas[(int)type].Score);
-        return 0;
+
+
+        switch (type)
+        {
+            default:
+                GameManager.Instance.AddItemScore(ItemDatas[(int)type].Score);
+                break;
+            case ItemType.GoldBar:
+                {
+                    GameManager.Instance.AddItemScore(ItemDatas[(int)type].Score);
+                    StartCoroutine(ItemEffect.Instance.SpawnGoldenEgg());
+                    break;
+                }
+            case ItemType.Meat:
+                {
+                    if(ItemEffect.Instance.GiantState)
+                    {
+                        GameManager.Instance.AddItemScore(ItemDatas[(int)type].Score * 2);
+                    }
+                    else
+                    {
+                        GameManager.Instance.AddItemScore(ItemDatas[(int)type].Score);
+                        StartCoroutine(ItemEffect.Instance.ChangToGiant());
+                    }
+                    break;
+                }
+            case ItemType.Wing:
+                {
+                    GameManager.Instance.AddItemScore(ItemDatas[(int)type].Score);
+                    StartCoroutine(ItemEffect.Instance.Flying());
+                    break;
+                }
+        }
     }
 }

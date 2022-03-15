@@ -15,5 +15,5 @@ MonoBehaviour:
   _itemName: Wing
   _itemNumber: 6
   _score: 100
-  _spawnFrequency: 4
+  _spawnFrequency: 3
   _maxCount: 5
