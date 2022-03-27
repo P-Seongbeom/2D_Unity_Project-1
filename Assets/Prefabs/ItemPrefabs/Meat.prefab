@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1201689128381996185}
   - component: {fileID: 1201689128381996184}
   - component: {fileID: -2085444670888706088}
-  - component: {fileID: 8010142364751962723}
+  - component: {fileID: 3579485614696339543}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Item
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.98
---- !u!114 &8010142364751962723
+--- !u!114 &3579485614696339543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1201689128381996191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3317758defb19114d9f45b4bd64cf0e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 539d163defed40149acc8b954cb1d273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: 304e6ca177ba82e449a3be7c29e9125e, type: 2}

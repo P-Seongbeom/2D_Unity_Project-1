@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(false == ItemEffect.Instance.FlyState)
+        if(false == ItemManager.Instance.FlyState)
         {
             Jump();
         }
-        else if(ItemEffect.Instance.FlyState)
+        else if(ItemManager.Instance.FlyState)
         {
             Flying();
         }
@@ -64,6 +64,35 @@ public class PlayerController : MonoBehaviour
         {
             _playerRigidbody.velocity *= 0.5f;
         }
+
+        //Touch touch = Input.GetTouch(0);
+        //switch(touch.phase)
+        //{
+        //    case TouchPhase.Began:
+        //        {
+        //            if(_jumpCount < 2)
+        //            {
+        //                ++_jumpCount;
+
+        //                _playerRigidbody.velocity = Vector2.zero;
+        //                _playerRigidbody.AddForce(new Vector2(0, JumpForce));
+
+        //                _playerAudio.clip = JumpingSound;
+        //                _playerAudio.Play();
+
+        //                _animator.SetBool("isJump", true);
+        //            }
+        //            break;
+        //        }
+        //    case TouchPhase.Ended:
+        //        {
+        //            if(_playerRigidbody.velocity.y > 0)
+        //            {
+        //                _playerRigidbody.velocity *= 0.5f;
+        //            }
+        //            break;
+        //        }
+        //}
     }
 
     private void Die()
@@ -80,25 +109,17 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Item")
-        {
-            string typeName = collision.gameObject.transform.parent.name;
-            ItemType type = (ItemType)System.Enum.Parse(typeof(ItemType), typeName);
-
-            ItemPool.Instance.ActivateItem(type);
-
-            ItemPool.Instance.OffItem(collision.gameObject);
-        }
-
+    { 
         if (collision.tag == "Obstacle" && false == _isDead)
         {
-            if (false == ItemEffect.Instance.GiantState)
+            if (false == ItemManager.Instance.GiantState)
             {
                 Die();
             }
-            else if (ItemEffect.Instance.GiantState)
+            else if (ItemManager.Instance.GiantState)
             {
+                _playerAudio.clip = LandingSound;
+                _playerAudio.Play();
                 collision.gameObject.SetActive(false);
             }
         }
@@ -158,7 +179,17 @@ public class PlayerController : MonoBehaviour
             Vector3 reposition = new Vector3(0f, 3f * Time.deltaTime, 0f);
             transform.position += reposition;
         }
-        
+
+        //Touch touch = Input.GetTouch(0);
+        //switch(touch.phase)
+        //{
+        //    case TouchPhase.
+        //}
+
+    }
+
+    public void ChangeBodyColor()
+    {
 
     }
 }

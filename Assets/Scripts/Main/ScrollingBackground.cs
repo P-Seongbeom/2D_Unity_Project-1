@@ -14,7 +14,7 @@ public class ScrollingBackground : MonoBehaviour
     public ItemPattern[] ItemPatterns;
 
     public float ScrollSpeed;
-    public float AddSpeedRate = 0f;
+    public float AddSpeed = 0f;
     public float ScrollObjectFrequency;
     public float SpawnObjectFrequency;
 
@@ -58,17 +58,17 @@ public class ScrollingBackground : MonoBehaviour
 
                 foreach (GameObject child in ItemPatterns[i].Patterns)
                 {
-                    child.gameObject.SetActive(false);
+                    child.SetActive(false);
                 }
             }
 
             _itemInfo = new List<ItemData>();
 
-            _itemInfo = ItemPool.Instance.ItemDatas.ToList<ItemData>();
+            _itemInfo = ItemPool.Instance.ItemDatas.ToList();
 
             _itemInfo.Sort(delegate (ItemData a, ItemData b){ return a.SpawnFrequency.CompareTo(b.SpawnFrequency); });
 
-            _createdItems = new GameObject[ScrollObject.Length * 7];
+            _createdItems = new GameObject[ScrollObject.Length * 6];
 
             _nextPattern = new List<int[]>();
 
@@ -190,7 +190,7 @@ public class ScrollingBackground : MonoBehaviour
 
     private void AddScrollSpeed()
     {
-        ScrollSpeed += ScrollSpeed * AddSpeedRate * Time.deltaTime;
+        ScrollSpeed += AddSpeed * Time.deltaTime;
     }
 
     private void ScrollItem()
@@ -239,7 +239,7 @@ public class ScrollingBackground : MonoBehaviour
 
         for (int i = 0; i < ItemPatterns[index - 1].Patterns[_patternType].transform.childCount; ++i)
         {
-            if (createdItemIndex == ScrollObject.Length * 7)
+            if (createdItemIndex == ScrollObject.Length * 6)
             {
                 createdItemIndex = 0;
             }
@@ -255,9 +255,9 @@ public class ScrollingBackground : MonoBehaviour
 
     private ItemType SetItemType()
     {
-        if (ItemEffect.Instance.GetGoldBar)
+        if (ItemManager.Instance.TypeFix)
         {
-            return ItemType.GoldenEgg;
+            return ItemActivate.Instance.ChangeType;
         }
         else
         {

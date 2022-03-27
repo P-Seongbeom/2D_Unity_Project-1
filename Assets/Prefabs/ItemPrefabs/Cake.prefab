@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2401469711185722895}
   - component: {fileID: 2401469711185722894}
   - component: {fileID: 1688945846834512050}
-  - component: {fileID: 7558719302088405309}
+  - component: {fileID: 6190431262928618542}
   m_Layer: 0
   m_Name: Cake
   m_TagString: Item
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.995
---- !u!114 &7558719302088405309
+--- !u!114 &6190431262928618542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2401469711185722889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3317758defb19114d9f45b4bd64cf0e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4826ba2d55f61c94abcd23afa7da9252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: bbf142fc126b7f94a8d7816bdf549496, type: 2}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8113630306930364068}
   - component: {fileID: 8113630306930364069}
   - component: {fileID: -6915813284842168886}
-  - component: {fileID: 6785816617080694162}
+  - component: {fileID: 7389816263058399977}
   m_Layer: 0
   m_Name: GoldBar
   m_TagString: Item
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &6785816617080694162
+--- !u!114 &7389816263058399977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8113630306930364066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3317758defb19114d9f45b4bd64cf0e1, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d7bade1b771e748a63d4a5d61880a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: fa5d53dc751c2bd4cab70f366e796a68, type: 2}
+  _spawnItem: {fileID: 11400000, guid: 6432e6b4cd740774dac5653dbbc84309, type: 2}

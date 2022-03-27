@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5723963797904868020}
   - component: {fileID: 5723963797904868021}
   - component: {fileID: 4867946121408006223}
-  - component: {fileID: 3588863936577433388}
+  - component: {fileID: 1602474506977617962}
   m_Layer: 0
   m_Name: GoldenEgg
   m_TagString: Item
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.9
---- !u!114 &3588863936577433388
+--- !u!114 &1602474506977617962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5723963797904868026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3317758defb19114d9f45b4bd64cf0e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4826ba2d55f61c94abcd23afa7da9252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: 6432e6b4cd740774dac5653dbbc84309, type: 2}

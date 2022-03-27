@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool GameOver;
     public Text ScoreText;
     public GameObject GameOverUI;
+    public string LobbyScene;
 
     private float _score = 0;
     private float _itemScore;
@@ -36,10 +37,6 @@ public class GameManager : MonoBehaviour
             AddTimeScore();
 
             ScoreText.text = "Score : " + (int)_score;
-        }
-        else if(GameOver && Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
         }
     }
 
@@ -67,4 +64,15 @@ public class GameManager : MonoBehaviour
         GameOver = true;
         GameOverUI.SetActive(true);
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReturnLobby()
+    {
+        SceneManager.LoadScene(LobbyScene);
+    }
+
 }

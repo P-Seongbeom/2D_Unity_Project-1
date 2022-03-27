@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5317475467298699490}
   - component: {fileID: 5317475467298699489}
   - component: {fileID: 5339386377124009128}
-  - component: {fileID: 7629794049767260371}
+  - component: {fileID: 7274856787548519317}
   m_Layer: 0
   m_Name: Wing
   m_TagString: Item
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.925
---- !u!114 &7629794049767260371
+--- !u!114 &7274856787548519317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5317475467298699488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3317758defb19114d9f45b4bd64cf0e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eda3013a96696940a7f1e9f508ee2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: f1a47f8b3db210445921b859ec1e1cb7, type: 2}

@@ -247,7 +247,7 @@ MonoBehaviour:
   ItemPattern: {fileID: 0}
   ItemPatterns: []
   ScrollSpeed: 3
-  AddSpeedRate: 0
+  AddSpeed: 0
   ScrollObjectFrequency: 100
   SpawnObjectFrequency: 100
 --- !u!1 &203587328
@@ -301,7 +301,7 @@ MonoBehaviour:
   ItemPattern: {fileID: 0}
   ItemPatterns: []
   ScrollSpeed: 4
-  AddSpeedRate: 0
+  AddSpeed: 0
   ScrollObjectFrequency: 100
   SpawnObjectFrequency: 100
 --- !u!1 &220580185
@@ -557,7 +557,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 273755801}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1567419727}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &273755801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,7 +690,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 348779915}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1567419727}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ReturnLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &348779915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3178,9 +3202,9 @@ MonoBehaviour:
   ItemPattern: {fileID: 746369197}
   ItemPatterns: []
   ScrollSpeed: 5
-  AddSpeedRate: 0.01
+  AddSpeed: 0.05
   ScrollObjectFrequency: 85
-  SpawnObjectFrequency: 20
+  SpawnObjectFrequency: 15
 --- !u!1 &1220712803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,6 +3234,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1584089376}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1244799373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244799375}
+  - component: {fileID: 1244799374}
+  m_Layer: 0
+  m_Name: Item Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1244799374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244799373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7980f7970528508428d0282ec53faf56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 964767503}
+  TypeFix: 0
+  GiantState: 0
+  FlyState: 0
+  _typeFixTime: 5
+  _giantTime: 5
+  _flyTime: 5
+--- !u!4 &1244799375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244799373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.16071784, y: 1.1534514, z: -3.541759}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326666274
 GameObject:
@@ -3456,11 +3530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5865ff65f9d146047acda9c8bed21061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 964767503}
-  GetGoldBar: 0
-  GiantState: 0
-  _goldenEggTime: 5
-  _GiantTime: 5
+  ChangeType: 0
 --- !u!1 &1451985117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,6 +3987,7 @@ MonoBehaviour:
   GameOver: 0
   ScoreText: {fileID: 948381493}
   GameOverUI: {fileID: 654750844}
+  LobbyScene: Lobby
   AddTimeValue: 5
   ValueRate: 0.01
 --- !u!1 &1575572028
