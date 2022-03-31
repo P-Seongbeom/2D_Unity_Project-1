@@ -113,4 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: fa5d53dc751c2bd4cab70f366e796a68, type: 2}
-  _spawnItem: {fileID: 11400000, guid: 6432e6b4cd740774dac5653dbbc84309, type: 2}
+  _ChangeItem: {fileID: 11400000, guid: 6432e6b4cd740774dac5653dbbc84309, type: 2}
+  TypeFixTime: 5

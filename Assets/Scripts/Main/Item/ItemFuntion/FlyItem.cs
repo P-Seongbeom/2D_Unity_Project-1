@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class FlyItem : Item
 {
+    public float _flyTime = 5f;
+
+    private GameObject _player;
+    void Start()
+    {
+        _player = GameObject.Find("Player");
+    }
     protected override void Activate()
     {
         GameManager.Instance.AddItemScore(_itemData.Score);
-        ItemActivate.Instance.ActivateItem(ItemActivate.Instance.Flying());
+        _player.GetComponent<PlayerController>().ChangeToFly(_flyTime);
     }
 }

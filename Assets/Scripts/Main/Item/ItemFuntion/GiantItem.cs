@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class GiantItem : Item
 {
+    public float _giantTime = 5f;
+
+    private GameObject _player;
+
+    void Start()
+    {
+        _player = GameObject.Find("Player");
+    }
     protected override void Activate()
     {
         GameManager.Instance.AddItemScore(_itemData.Score);
-        ItemActivate.Instance.ActivateItem(ItemActivate.Instance.ChangToGiant());
+        _player.GetComponent<PlayerController>().Giantize(_giantTime);
     }
 }

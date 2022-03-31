@@ -5,10 +5,13 @@ using UnityEngine;
 public class SpawnChangeItem : Item
 {
     [SerializeField]
-    private ItemData _spawnItem;
+    private ItemData _ChangeItem;
+
+    public float TypeFixTime = 5f;
+
     protected override void Activate()
     {
         GameManager.Instance.AddItemScore(_itemData.Score);
-        ItemActivate.Instance.ActivateItem(ItemActivate.Instance.ChangeItemType(_spawnItem));
+        ItemSpawner.Instance.ChangeAllItem(_ChangeItem.ItemNumber, TypeFixTime);
     }
 }

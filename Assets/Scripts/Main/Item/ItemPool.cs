@@ -31,24 +31,24 @@ public class ItemPool : MonoBehaviour
             GameObject[] objects = new GameObject[ItemDatas[i].MaxCount];
             _itemPool.Add(objects);
 
-            GenerateItem((ItemType)i);
+            GenerateItem(i);
         }
     }
 
     
-    public void GenerateItem(ItemType type)
+    public void GenerateItem(int type)
     {
-        for(int i = 0; i < ItemDatas[(int)type].MaxCount; ++i)
+        for(int i = 0; i < ItemDatas[type].MaxCount; ++i)
         {
-            _itemPool[(int)type][i] = Instantiate(_itemPrefab[(int)type]);
-            _itemPool[(int)type][i].SetActive(false);
-            _itemPool[(int)type][i].transform.SetParent(transform.GetChild((int)type));
+            _itemPool[type][i] = Instantiate(_itemPrefab[type]);
+            _itemPool[type][i].SetActive(false);
+            _itemPool[type][i].transform.SetParent(transform.GetChild(type));
         }
     }
 
-    public GameObject SetItem(ItemType type)
+    public GameObject SetItem(int type)
     {
-        foreach(GameObject child in _itemPool[(int)type])
+        foreach(GameObject child in _itemPool[type])
         {
             if(false == child.activeSelf)
             {

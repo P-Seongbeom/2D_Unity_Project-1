@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
-{
-    Cake, Egg, GoldBar, GoldenEgg, Meat, TripleEgg, Wing
-}
 public abstract class Item : MonoBehaviour
 {
     protected abstract void Activate();
